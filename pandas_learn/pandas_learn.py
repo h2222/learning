@@ -13,3 +13,5 @@ print(s)
 # 字典创建series
 s2 = pd.Series({1:'a',2:'2'})
 print(s2)
+
+
