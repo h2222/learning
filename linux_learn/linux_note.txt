@@ -1,0 +1,24 @@
+1. linux 的学习(万物皆文件)
+1.1 / 根目录   ~ 本人(用户)目录  pwd print work directory 打印当前工作目录
+
+1.2  ls [-optional] [parameters]  '-'后接可选命令 命令后接可选单个或多个参数
+
+1.3 在linux系统中, 文件名以 . 开头为隐藏文件
+
+1.4 * 代表任意个数的字符  ? 只代表一个字符  [abc]或[1-3] 代表只要文件内含有abc任意一个都会被匹配
+    例: ls *11.txt   ls 1?1.txt   ls [abc]11.txt
+    
+1.5 绝对路径: cd 的时候以 / 或 ~ 开头的路径, 表示从根目录或家目录开始的具体路径
+   相对路径: cd 的时候不用从根目录或家目录开始, 表示从当前目录开始
+ 
+1.6 > 与 >> 重定向, linux将执行命令的结果输出到一个定向的文件中  例 echo hello >> a.py
+    > 会覆盖文件内容  >> 表示追加,  ls -lh >> list.txt
+
+ 
+ 
+ 
+2.1 tree 命令 -d directory 只显示文件夹   tree -d * 
+2.2 cp  copy命令 -i information 覆盖文件前提示  -r recursive 递归复制(复制文件夹)
+2.3 grep 文本查找命令(查找命令)  -n numbers 查找结果显示行号   -v inverse 显示不包含查找结果的行
+      -i ignore 忽略查找词的大小写    例 grep -nvi "hello world" test1.py
+2.4 echo 输入命令 通常联合重定向一起使用
