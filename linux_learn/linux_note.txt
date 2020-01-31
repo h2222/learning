@@ -16,9 +16,28 @@
 
  
  
- 
+常用
 2.1 tree 命令 -d directory 只显示文件夹   tree -d * 
 2.2 cp  copy命令 -i information 覆盖文件前提示  -r recursive 递归复制(复制文件夹)
 2.3 grep 文本查找命令(查找命令)  -n numbers 查找结果显示行号   -v inverse 显示不包含查找结果的行
       -i ignore 忽略查找词的大小写    例 grep -nvi "hello world" test1.py
 2.4 echo 输入命令 通常联合重定向一起使用
+
+
+系统命令
+2.5 date 查看当前时间  例: Fri Jan 31 22:25:58  2020
+2.6 cal  calender 日历  -y 显示全年日历  例: cal -y
+2.6 df disk free  磁盘剩余 -h human readable 可读
+2.7 du [目录名] disk usage 磁盘使用 -h  例如: du -h ./testdir
+2.8 ps aux  process status 进程状态 例:ps aux a表示 all 代表可以显示其他用户的进程, u代表显示详细信息, x 表示显示系统运行进程
+2.9 top/htop  显示动态进程信息 
+2.10 kill -9 [进程号码]  -9 代表强行杀死进程
+
+
+其他命令
+2.11 find [路径] -name "*x*"  查找文件命令, 在某路径下, 查找文件名中包含x的文件, 例:find . -name "*x*"
+2.12 ln -s  软连接 相当于wendows中的快捷方式 -s为建立软件连接, 不加建立硬链接(占用相同大小的磁盘) , 建立软链接是一定要是 绝对路径呀(从home开始)   
+2.13 tar  打包  tar -zcvf z压缩 combine打包 view显示进度 f表示显示定义打包文件的命令  例: tar -cvf test1.zip * (当前路径下所有的文件)
+           tar -zxvf z解压 x 撕碎 解压   其他不变  例 tar -xvf test1.zip -C [目标目录]
+2.14 gzip 压缩 tar 仅用于打包文件, gzip 用于压缩打包后的文件, 在linux 中 例: gzip test1.tar
+2.15 apt-get 安装(linux)
