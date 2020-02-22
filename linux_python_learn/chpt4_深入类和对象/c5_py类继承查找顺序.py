@@ -1,4 +1,4 @@
-#! python
+#! ython
 # coding=utf-8
 
 

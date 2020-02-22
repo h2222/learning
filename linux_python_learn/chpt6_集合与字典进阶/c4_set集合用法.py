@@ -6,7 +6,7 @@
 集合 set
 1. set 中的元素不重复, 无序, 一般用于序列去重
 2. set 为集合类型, 与序列类型的方法不通用
-3. set 和 dict 的试验位 hash算法(散列链表), 时间复杂度O(1), 性能高于list
+3. set 和 dict 的实现为 hash算法(散列链表), 时间复杂度O(1), 性能高于list
 4. 集合类型包含 set, forzen set, 其中 冻结set不同被修改, 通常用于dict的key
 '''
 
