@@ -89,6 +89,10 @@ print(dfc.iloc[:, 3])
 print(dfc.loc[:, 'age'])
 
 
+# 取多列
+print(df[['age', 'name']])
+
+
 # 判断空值, 非空返回False, null 返回 True
 print(dfc.isnull(), dfc['age'].isnull())
 
