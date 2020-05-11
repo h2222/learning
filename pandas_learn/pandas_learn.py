@@ -140,3 +140,24 @@ print(test_set)
 
 
 
+
+
+## 在xxx里, 或有xxx
+
+# 如果 df 的 out_nodes列中, 有元素在 ['z', 'm'] 中, 则将type改为3
+df.loc[df['out_node'].isin(['z', 'm']), 'type'] = 3
+
+# 如果 df 的 out_node列中, 有元素包含 z或m,  例如 'zhang' 中包含'z', 则将type改为3
+df.loc[df['out_node'].str.contains('z|m'), 'type'] = 3
+
+# 可以利用求反进行, 反选
+df.loc[~df['out_node'].str.contains('z|m'), 'type'] = 1
+
+
+
+
+
+
+
+
+
