@@ -20,7 +20,6 @@ print(dq)
 dq.rotate()
 print(dq)
 
-
 # 左侧扭转
 item0 = dq.popleft()
 dq.append(item0)

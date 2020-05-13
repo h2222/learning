@@ -54,14 +54,31 @@ def ml(nums=[10,9,2,5,3,7,101,18], ):
         troot.left = ml(nums=nums[1:])
     else:
         troot.right = ml(nums=nums[1:])
+
+    pass
+
+
+
+
+if __name__ == "__main__":
+
+    array = [
+          [1,   4,  7, 11, 15],
+          [2,   5,  8, 12, 19],
+          [3,   6,  9, 16, 22],
+          [10, 13, 14, 17, 24],
+          [18, 21, 23, 26, 30]
+          ]
+
+
+
+for line in array:
+    print(line[0])
     
 
 
 
 
-    return 
 
 
 
-if __name__ == "__main__":
-    max_length()
