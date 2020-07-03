@@ -89,6 +89,10 @@ print(dfc.iloc[:, 3])
 print(dfc.loc[:, 'age'])
 
 
+# 取多列
+print(df[['age', 'name']])
+
+
 # 判断空值, 非空返回False, null 返回 True
 print(dfc.isnull(), dfc['age'].isnull())
 
@@ -133,6 +137,27 @@ train_set = df.sample(frac=0.8, random_state=0, axis=0)
 print(train_set)
 test_set = df.loc[~df.index.isin(train_set.index)]
 print(test_set)
+
+
+
+
+
+## 在xxx里, 或有xxx
+
+# 如果 df 的 out_nodes列中, 有元素在 ['z', 'm'] 中, 则将type改为3
+df.loc[df['out_node'].isin(['z', 'm']), 'type'] = 3
+
+# 如果 df 的 out_node列中, 有元素包含 z或m,  例如 'zhang' 中包含'z', 则将type改为3
+df.loc[df['out_node'].str.contains('z|m'), 'type'] = 3
+
+# 可以利用求反进行, 反选
+df.loc[~df['out_node'].str.contains('z|m'), 'type'] = 1
+
+
+
+
+
+
 
 
 
