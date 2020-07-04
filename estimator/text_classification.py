@@ -6,6 +6,8 @@ import tensorflow as tf
 
 from tqdm import tqdm
 
+os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
 
 #%% 
 ## loading data functions
