@@ -173,13 +173,12 @@ def heap_sort(ls):
             heapify(ls, length, i)
        
         # transfer head and tail
-        for i in range(length - 1, 0, -1):
+        for i in range(length - 1, -1, -1):
             ls[i], ls[0] = ls[0], ls[i] # tail to head, head to tail
             heapify(ls, i, 0) # 从最顶部开始heaplify
     sort(ls)
     print(ls)
     shuffle(ls)
-
 
 
 """
@@ -211,6 +210,45 @@ def count_sort(ls):
     shuffle(ls)
 
 
+"""
+堆排序的应用, 查找一个数组总第k大的数值 nc 88
+nums = [1, 3, 5, 2, 2], k = 3
+当k = 3, nums中第三大的数值是2
+1. 排序, 2.查找   
+两种方案: 1.max heap 加查找  2. quick_sort + binary search
+"""
+
+# 方案1. max heap + 查找
+def find_kth(nums, k = 3):
+    print("nums:", sorted(nums))
+    def heapify(nums, length, i):
+        l = 2 * i  + 1
+        r = 2 * i + 2
+        target = i
+        if l < length and nums[l] < nums[target]:
+            target =  l
+        if r < length and nums[r] < nums[target]:
+            target = r
+        if target != i:
+            nums[target], nums[i] = nums[i], nums[target]
+            heapify(nums, length, target)
+
+        pass
+    def find(nums, k):
+        length = len(nums)
+        for i in range(length//2 -1 , -1, -1):
+            heapify(nums, length, i)    
+        j = length - 1
+        while j >= length - k:   # 正常情况下, 我们使用0进行排序, 但是因为我们需要找到第k大的值, 所用j需要减少到 n - k
+            nums[j], nums[0] = nums[0], nums[j]
+            heapify(nums, j, 0)
+            j -= 1
+        return nums[length - k]
+    print("the kth value of nums is ", find(nums, k))
+    shuffle(nums)
+
+
+
 
 
 if __name__ == "__main__":
@@ -223,3 +261,6 @@ if __name__ == "__main__":
     quick_sort(ls)
     heap_sort(ls)
     count_sort(ls)
+
+    #############
+    find_kth(ls)

@@ -70,7 +70,6 @@ def binary_search(ls):
 扭转二分查找
 """
 
-
 def twist_binary_search(ls):
     target = sample(ls, 1)[0]
     ls.sort()
@@ -99,8 +98,9 @@ def twist_binary_search(ls):
     shuffle(ls)
 
 
-
-
+"""
+深度优先搜索: DFS
+"""
 def DFS():
     g = Graph()
     g.build_default_graph()
@@ -121,7 +121,9 @@ def DFS():
 
     dfs_search(g, start_point)
 
-
+"""
+广度优先搜索:BFS
+"""
 
 def BFS():
     g = Graph()
@@ -140,10 +142,6 @@ def BFS():
                     queue.append(i)
                     visited[i] = True     # 设置访问 
     search(g, start)
-
-def a_star():
-    pass
-
 
 
 
