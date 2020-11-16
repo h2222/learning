@@ -155,6 +155,39 @@ df.loc[~df['out_node'].str.contains('z|m'), 'type'] = 1
 
 
 
+# 将 表groupby 并且 将 没有group的column做成list
+
+df1 = df.groupby('a')['b'].apply(list).reset_index(name='new')
+
+"""
+In [1]: df = pd.DataFrame( {'a':['A','A','B','B','B','C'], 'b':[1,2,5,5,4,6]})
+        df
+
+Out[1]: 
+   a  b
+0  A  1
+1  A  2
+2  B  5
+3  B  5
+4  B  4
+5  C  6
+
+In [2]: df.groupby('a')['b'].apply(list)
+Out[2]: 
+a
+A       [1, 2]
+B    [5, 5, 4]
+C          [6]
+Name: b, dtype: object
+
+In [3]: df1 = df.groupby('a')['b'].apply(list).reset_index(name='new')
+        df1
+Out[3]: 
+   a        new
+0  A     [1, 2]
+1  B  [5, 5, 4]
+2  C        [6]
+"""
 
 
 
