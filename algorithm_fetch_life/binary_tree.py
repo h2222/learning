@@ -43,7 +43,7 @@ def insert_binary_tree(node):
 
 
 """
-二叉树展开为链表, leetcode:22
+二叉树展开为链表, leetcode: 114
 """
 
 # 递归法, 前序遍历
@@ -240,7 +240,6 @@ def find_duplicate_sub_tree(root):
         left_str = find(root.left) # 后序遍历(因为要扫描掉整颗树才能知道有没有重复)
         right_str = find(root.right)
         sub_tree_str = left_str + "," + right_str + "," + str(root.val) # 二叉树序列化
-
         count_binary_tree.setdefault(sub_tree_str, 1) # 初始化
         if count_binary_tree[sub_tree_str] == 2:
             save_dup_tree.append(root) # 保存重复的子树
@@ -265,3 +264,124 @@ def three_find(root):
     return res
 
 
+"""
+构建二叉搜索树:BST(binary search tree)
+BST: 根节点的值小于左节点的值, 根节点的值小于右节点的值, 且左右节点均为二叉搜索树
+"""
+
+# 构建单颗bst, mid 直接求中间值就可以
+def build_bst(start, end):
+    if not root:
+        return
+    mid = (start + end) // 2
+    root = TreeNode(mid)
+    build(start, mid - 1)
+    build(mid + 1, end)
+    return root
+
+# 构建多颗bst, 需要动态的调整i的位置以达到构建多颗bst的目的
+
+
+
+
+"""
+找到搜索二叉树(BST)的最近公共祖先 leetcode offer 68 |
+解析: 
+1. 清楚BST的性质, 即root.val > root.left.val, root.val < root.left.val, 且 root.left 与 root.right 也为搜索二叉树
+2. 空树 (None tree) 也是树!
+3. 总体思路为前序遍历, 分为递归和非递归2种实现
+"""
+
+# dsf - preorder - recursion
+def lowest_common_ancestor(root, p, q):
+    if not root:
+        return None
+    
+    if root.val < q.val and root.val < p.val: # p q的 val 比 root 的 val 都要大, 说明root需要右移增大 
+        return lowest_common_ancestor(root.right, p, q)
+    elif root.val > q.val and root.val > p.val: # p q 的 val 比 root 的 val 都要小, 说明root需要左移减小
+        return lowest_common_ancestor(root.left, p, q)
+    else:
+        return root # 如果 q < root < p 或者 p < root < q, 说明root为 BST的最近祖先(因为BST性质的存在, 因此该root一定为最近祖先)
+
+# dfs - preorder - non recursion
+def lowest_common_ancestor(root, p, q):
+    if not root:
+        return None
+    while root:
+        if root.val < q.val and root.val < p.val:
+            root = root.right
+        elif root.val > q.val and root.val > p.val:
+            root = root.left
+        else:
+            return root
+
+"""
+找到二叉树(BT)的最近公共祖先 leetcode offer 68 ||
+该题目相较上一题有一些难度, 原因在于二叉树不能判断粗左右子节点谁的值更大, 所用采用压栈的方式找出, 两种方法:
+1. 压栈, 前序遍历, 从root->q 和 从root->p 整个路线上的所有节点, 然后找到两个栈最后端最后一次保持相同的元素, 即为最近公共祖先 
+    stack_1 : 6(root) -> 2 -> 4 -> 3(q)
+    stack_2 : 6(root) -> 2 -> 4 -> 5(p)
+
+2. 后续遍历, root -> q 和 root-> p 搜索, 到最底层(leaf node), 无非三种情况, node 为空,  node 为 q, node 为 p
+    回溯过程: 还是三种情况, 左边node 没有, 右边树没有, 左右边树有
+
+
+     6    例如: p =  3, q = 5
+   /   \
+  2     8
+ / \   / \
+0   4  7  9
+   / \ 
+   3  5
+"""
+
+# stack dfs pre_order
+
+def lowest_common_ancestor_bt(root, q, p):
+    if not root:
+        return None
+    stack_1 = []
+    stacK_2 = []
+    def pre_order(root, target, stack):
+        if not root: # 到底了, 没找到target
+            return False
+        
+        stack.append(target) # root不是空值, 压栈
+
+        if root.val == target.val: # search路上找到了, 返回True
+            return True
+
+        left_result = pre_order(root.left, target, stack) # 返回左右结果
+        right_result = pre_order(root.right, target, stack)
+
+        if left_result or right_result: # 左右随便一边找到了, 返回true
+            return True
+
+        stack.pop() # 左右都没找到, 站定退出
+    
+    pre_order(root, p, stack_1)
+    pre_order(root, q, stack_2)
+
+    # 找相似
+    i = 0
+    res = None
+    while i < len(stack_1) and i < len(stack_2) and stack_1[i] != stack_2[i]:
+        res = stack_1[1]
+    return res
+
+# dfs pos_order
+
+def lowest_common_ancestor_bt(root, q, p):
+    if not root or root == q or root == p: # 3种情况, 到底, 遇到q, 遇到p
+        return root
+    left_node = lowest_common_anscestor_bt(root.left, q, p)
+    right_node = lowest_common_anscestor_bt(root.right, q, p)
+
+    if not left_node:
+        return right_node
+    if not right_node:
+        return left_ndoe
+    return root
+        
+        

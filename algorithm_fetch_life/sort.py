@@ -156,9 +156,9 @@ def heap_sort(ls):
         l = 2 * i + 1 # left child index
         r = 2 * i + 2 # right child index
 
-        if l < length and ls[l] < ls[target]:
+        if l < length and ls[l] > ls[target]:
             target = l
-        if r < length and ls[r] < ls[target]:
+        if r < length and ls[r] > ls[target]:
             target = r
 
         if target != i:
@@ -177,7 +177,7 @@ def heap_sort(ls):
             ls[i], ls[0] = ls[0], ls[i] # tail to head, head to tail
             heapify(ls, i, 0) # 从最顶部开始heaplify
     sort(ls)
-    print(ls)
+    print("heap sort:", ls)
     shuffle(ls)
 
 
@@ -211,7 +211,7 @@ def count_sort(ls):
 
 
 """
-堆排序的应用, 查找一个数组总第k大的数值 nc 88
+堆排序的应用, 查找一个数组中第k大的数值 nc 88
 nums = [1, 3, 5, 2, 2], k = 3
 当k = 3, nums中第三大的数值是2
 1. 排序, 2.查找   
@@ -243,6 +243,7 @@ def find_kth(nums, k = 3):
             nums[j], nums[0] = nums[0], nums[j]
             heapify(nums, j, 0)
             j -= 1
+        print(nums)
         return nums[length - k]
     print("the kth value of nums is ", find(nums, k))
     shuffle(nums)
